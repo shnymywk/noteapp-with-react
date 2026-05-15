@@ -9,17 +9,17 @@ const Sidebar = ({onAddNote , notes}) => {
             </div>
             <div className="app-sidebar-notes">
                 {notes.map((note) => (
-                    <div className="app-sidebar-note">
-                    <div className="sidebar-note-title">
-                        <strong>{note.title}</strong>
-                        <button>削除</button>
+                    <div className="app-sidebar-note" key={note.id}>
+                        <div className="sidebar-note-title">
+                            <strong>{note.title}</strong>
+                            <button>削除</button>
+                        </div>
+                        <p>{note.content}</p>
+                        <small>{new Date(note.modDate).toLocaleDateString("ja-JP",{
+                            hour: "2-digit",
+                            minute:"2-digit",
+                        })}</small>
                     </div>
-                    <p>{note.content}</p>
-                    <small>{new Date(note.modDate).toLocaleDateString("ja-JP",{
-                        hour: "2-digit",
-                        minute:"2-digit",
-                    })}</small>
-                </div>
                 ))} 
             </div>
         </div>
