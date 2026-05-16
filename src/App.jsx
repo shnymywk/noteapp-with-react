@@ -30,17 +30,31 @@ function App() {
     return notes.find((note) => note.id === activeNote)
   }
 
+  const onUpdateNote = (updatedNote) => {
+    // 修正された新しいノートの配列を返す。
+    const updatedNotesArray = notes.map((note) => {
+      if (note.id === updatedNote.id){
+        return updatedNote;
+      } else {
+        return note;
+      }
+    })
+
+    setNotes( updatedNotesArray )
+  }
+
   return (
     <div className="App">
       <Sidebar 
         onAddNote={ onAddNote } 
-        notes={notes} 
-        onDeleteNote={onDeleteNote}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
+        notes={ notes } 
+        onDeleteNote={ onDeleteNote }
+        activeNote={ activeNote }
+        setActiveNote={ setActiveNote }
         />
       <Main 
-        activeNote={getActiveNote()}
+        activeNote={ getActiveNote() } 
+        onUpdateNote={ onUpdateNote }
         />
     </div>
   )
