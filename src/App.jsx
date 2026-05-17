@@ -14,6 +14,10 @@ function App() {
     localStorage.setItem("notes", JSON.stringify(notes));
   },[notes]) 
   
+  useEffect(() => {
+    setActiveNote((notes[0].id))
+  },[]) 
+
   const onAddNote = () => {
     console.log("新しくノートが追加されました")
     const newNote = {
