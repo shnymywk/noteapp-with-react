@@ -10,7 +10,7 @@ function App() {
   // 上が少し特殊でlocalStorageから"notes"をとってきているがJSON形式なのでJavascriptで作用するようにparseさせている。
   // ||はorを意味していてnotesが取得できればnotesを返すし、なければから配列を返す
   const [ notes, setNotes ] = useState(JSON.parse(localStorage.getItem("notes")) || [])
-  const [ activeNote, setActiveNote ] = useState(false)
+  const [ activeNote, setActiveNote ] = useState(notes[0]?.id || false)
 
   useEffect(() => {
     // ローカルストレージにノートを保存する
@@ -19,11 +19,6 @@ function App() {
     localStorage.setItem("notes", JSON.stringify(notes));
   },[notes]) 
   
-  // notesの最初の配列のidを引数としてsetActiveNote関数を呼び出す。空配列のためマウント時のみ作用
-  useEffect(() => {
-    setActiveNote((notes[0].id))
-  },[]) 
-
   // onAddNote たぶんonClickのたびに呼び出される関数
   const onAddNote = () => {
     // 4つの要素を含んだオブジェクトが呼び出される
